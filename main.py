@@ -1,4 +1,5 @@
 from generator import ReadmeGenerator
+from options import Options
 
 
 options = {
@@ -7,7 +8,8 @@ options = {
     'storage': True,
     'pytest': True,
 }
-writer = ReadmeGenerator(**options)
+options = Options(**options)
+writer = ReadmeGenerator(options)
 
 with open('example_output.md', 'w') as f:
     f.write(writer.generate_content())

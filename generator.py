@@ -1,15 +1,9 @@
+from options import Options
+
+
 class ReadmeGenerator:
-    def __init__(
-        self,
-        project_name: str,
-        celery: bool = False,
-        storage: bool = False,
-        pytest: bool = False,
-    ):
-        self.project_name = project_name
-        self.celery = celery
-        self.storage = storage
-        self.pytest = pytest
+    def __init__( self, options: Options):
+        self.options = options
 
     def generate_content(self) -> str:
         res = self._generate_title()
@@ -19,12 +13,12 @@ class ReadmeGenerator:
         return res
 
     def _generate_title(self):
-        return f'# {self.project_name}\n\n'
+        return f'# {self.options.project_name}\n\n'
 
     def _generate_local_setup(self) -> str:
         res = '## Local Setup\n\n'
         res += self._copy_env()
-        if self.storage:
+        if self.options.storage:
             res += self._make_storage_bucket()
         res += self._build_project()
         res += self._create_superuser()
@@ -88,7 +82,7 @@ class ReadmeGenerator:
 
     def _run_tests_command(self) -> str:
         res = 'Inside python container\n\n'
-        if self.pytest:
+        if self.options.pytest:
             command = 'pytest'
         else:
             command = 'python manage.py test'
@@ -111,11 +105,11 @@ class ReadmeGenerator:
     def _table_body(self) -> str:
         res = '| python | main django application|\n'
         res += '| postgres | database |\n'
-        if self.celery:
+        if self.options.celery:
             res += '| scheduler | django_celery_beat scheduler |\n'
             res += '| worker | celery worker |\n'
             res += '| rabbitmq | celery message broker |\n'
-        if self.storage:
+        if self.options.storage:
             res += '| storage | amazon s3 emulator |\n'
         res += '\n'
         return res
