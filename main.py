@@ -3,7 +3,7 @@ from generator import ReadmeGenerator
 
 options = {
     'project_name': 'Test Project',
-    'celery': False,
+    'celery': True,
     'storage': True,
     'pytest': False,
     'https': False,

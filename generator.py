@@ -16,6 +16,7 @@ class ReadmeGenerator:
     def generate_content(self) -> str:
         res = self._generate_title()
         res += self._generate_local_setup()
+        res += self._generate_containers_table()
         return res
 
     def _generate_title(self):
@@ -81,5 +82,26 @@ class ReadmeGenerator:
             'Follow further instructions\n\n'
         )
 
-    def _containers_table(self) -> str:
-        return
+    def _generate_containers_table(self) -> str:
+        res = self._table_headers()
+        res += self._table_body()
+        return res
+
+    def _table_headers(self) -> str:
+        return (
+            '## Containers description\n'
+            '| Container name | Purpose |\n'
+            '|----------------|---------|\n'
+        )
+
+    def _table_body(self) -> str:
+        res = '| python | main django application|\n'
+        res += '| postgres | database |\n'
+        if self.celery:
+            res += '| scheduler | django_celery_beat scheduler |\n'
+            res += '| worker | celery worker |\n'
+            res += '| rabbitmq | celery message broker |\n'
+        if self.storage:
+            res += '| storage | amazon s3 emulator |\n'
+        res += '\n'
+        return res

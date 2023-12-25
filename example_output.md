@@ -42,3 +42,13 @@ python manage.py createsuperuser
 
 Follow further instructions
 
+## Containers description
+| Container name | Purpose |
+|----------------|---------|
+| python | main django application|
+| postgres | database |
+| scheduler | django_celery_beat scheduler |
+| worker | celery worker |
+| rabbitmq | celery message broker |
+| storage | amazon s3 emulator |
+
