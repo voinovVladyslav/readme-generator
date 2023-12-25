@@ -6,7 +6,6 @@ options = {
     'celery': True,
     'storage': True,
     'pytest': True,
-    'https': False,
 }
 writer = ReadmeGenerator(**options)
 

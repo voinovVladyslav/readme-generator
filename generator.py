@@ -5,13 +5,11 @@ class ReadmeGenerator:
         celery: bool = False,
         storage: bool = False,
         pytest: bool = False,
-        https: bool = False,
     ):
         self.project_name = project_name
         self.celery = celery
         self.storage = storage
         self.pytest = pytest
-        self.https = https
 
     def generate_content(self) -> str:
         res = self._generate_title()
