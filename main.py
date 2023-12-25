@@ -1,15 +1,11 @@
 from generator import ReadmeGenerator
-from options import Options
+from menu import Menu
 
 
-options = {
-    'project_name': 'Test Project',
-    'celery': True,
-    'storage': True,
-    'pytest': True,
-}
-options = Options(**options)
-writer = ReadmeGenerator(options)
 
-with open('example_output.md', 'w') as f:
+menu = Menu()
+menu.prompt_options()
+writer = ReadmeGenerator(menu.get_options())
+
+with open('output.md', 'w') as f:
     f.write(writer.generate_content())
