@@ -5,7 +5,7 @@ options = {
     'project_name': 'Test Project',
     'celery': True,
     'storage': True,
-    'pytest': False,
+    'pytest': True,
     'https': False,
 }
 writer = ReadmeGenerator(**options)

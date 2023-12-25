@@ -42,6 +42,14 @@ python manage.py createsuperuser
 
 Follow further instructions
 
+## How to run tests
+
+Inside python container
+
+```bash
+pytest
+```
+
 ## Containers description
 | Container name | Purpose |
 |----------------|---------|

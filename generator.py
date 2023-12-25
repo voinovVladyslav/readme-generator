@@ -16,6 +16,7 @@ class ReadmeGenerator:
     def generate_content(self) -> str:
         res = self._generate_title()
         res += self._generate_local_setup()
+        res += self._generate_testing_section()
         res += self._generate_containers_table()
         return res
 
@@ -81,6 +82,21 @@ class ReadmeGenerator:
             f'{self._bash_command("python manage.py createsuperuser")}'
             'Follow further instructions\n\n'
         )
+
+    def _generate_testing_section(self) -> str:
+        res = '## How to run tests\n\n'
+        res += self._run_tests_command()
+        return res
+
+    def _run_tests_command(self) -> str:
+        res = 'Inside python container\n\n'
+        if self.pytest:
+            command = 'pytest'
+        else:
+            command = 'python manage.py test'
+        res += self._bash_command(command)
+        return res
+
 
     def _generate_containers_table(self) -> str:
         res = self._table_headers()
