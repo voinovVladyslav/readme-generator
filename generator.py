@@ -22,6 +22,7 @@ class ReadmeGenerator:
             res += self._make_storage_bucket()
         res += self._build_project()
         res += self._create_superuser()
+        res += self._run_project()
         return res
 
     def _copy_env(self) -> str:
