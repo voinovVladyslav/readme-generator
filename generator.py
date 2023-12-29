@@ -107,7 +107,7 @@ class ReadmeGenerator:
         res = '| python | main django application|\n'
         res += '| postgres | database |\n'
         if self.options.celery:
-            res += '| scheduler | django_celery_beat scheduler |\n'
+            res += '| beat | django_celery_beat beat |\n'
             res += '| worker | celery worker |\n'
             res += '| rabbitmq | celery message broker |\n'
         if self.options.storage:
